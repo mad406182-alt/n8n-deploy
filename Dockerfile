@@ -1,1 +1,1 @@
-n8nio/n8n:Iatest
+FROM n8nio/n8n:latest
