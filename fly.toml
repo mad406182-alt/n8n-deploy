@@ -1,0 +1,28 @@
+app = "n8n-app"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[env]
+N8N_BASIC_AUTH_ACTIVE = "true"
+N8N_BASIC_AUTH_USER = "admin"
+N8N_BASIC_AUTH_PASSWORD = "changeme"
+N8N_HOST = "0.0.0.0"
+N8N_PORT = "5678"
+
+[[services]]
+  internal_port = 5678
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+    grace_period = "30s"
+    restart_limit = 0
